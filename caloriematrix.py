@@ -1,5 +1,3 @@
-Python 3.12.4 (tags/v3.12.4:8e8a4ba, Jun  6 2024, 19:30:16) [MSC v.1940 64 bit (AMD64)] on win32
-Type "help", "copyright", "credits" or "license()" for more information.
 import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
@@ -77,37 +75,38 @@ with tab_scan:
     
     # Hooks into the device hardware
     food_image = st.camera_input("Take a picture of your food")
-...     
-...     if food_image is not None:
-...         # Display the captured image buffer
-...         st.image(food_image, caption="Captured Image", use_column_width=True)
-...         
-...         # Placeholder for ML Vision Processing
-...         with st.spinner("Running Vision Analysis..."):
-...             # In a production app, we would send 'food_image.getvalue()' to an API here.
-...             st.success("Analysis Complete (Simulated)")
-...             
-...         # Simulated Output for the Prototype
-...         st.write("**Detected:** Mixed Grill Plate (No Tomato detected)")
-...         st.write("**Estimated Macros:** 650 kcal | 45g Protein")
-...         
-...         if st.button("Log Simulated Detection"):
-...             new_entry = pd.DataFrame([{
-...                 "Date": datetime.now().strftime("%Y-%m-%d"),
-...                 "Time": datetime.now().strftime("%H:%M"),
-...                 "Item": "Auto-Scanned Meal",
-...                 "Calories": 650,
-...                 "Protein": 45
-...             }])
-...             st.session_state.logs = pd.concat([st.session_state.logs, new_entry], ignore_index=True)
-...             st.success("Logged!")
-... 
-... # --- TAB 4: Settings & Dietary Filters ---
-... with tab_settings:
-...     st.header("App Configuration")
-...     st.session_state.daily_target = st.number_input("Daily Calorie Budget", value=st.session_state.daily_target, step=100)
-...     st.session_state.protein_target = st.number_input("Daily Protein Goal (g)", value=st.session_state.protein_target, step=10)
-...     
-...     st.divider()
-...     st.subheader("Dietary Aversions")
-...     st.error("Active Filter: **NO TOMATOES**")
+    
+    if food_image is not None:
+        # Display the captured image buffer
+        st.image(food_image, caption="Captured Image", use_column_width=True)
+        
+        # Placeholder for ML Vision Processing
+        with st.spinner("Running Vision Analysis..."):
+            # In a production app, we would send 'food_image.getvalue()' to an API here.
+            st.success("Analysis Complete (Simulated)")
+            
+        # Simulated Output for the Prototype
+        st.write("**Detected:** Mixed Grill Plate (No Tomato detected)")
+        st.write("**Estimated Macros:** 650 kcal | 45g Protein")
+        
+        if st.button("Log Simulated Detection"):
+            new_entry = pd.DataFrame([{
+                "Date": datetime.now().strftime("%Y-%m-%d"),
+                "Time": datetime.now().strftime("%H:%M"),
+                "Item": "Auto-Scanned Meal",
+                "Calories": 650,
+                "Protein": 45
+            }])
+            st.session_state.logs = pd.concat([st.session_state.logs, new_entry], ignore_index=True)
+            st.success("Logged!")
+
+# --- TAB 4: Settings & Dietary Filters ---
+with tab_settings:
+    st.header("App Configuration")
+    st.session_state.daily_target = st.number_input("Daily Calorie Budget", value=st.session_state.daily_target, step=100)
+    st.session_state.protein_target = st.number_input("Daily Protein Goal (g)", value=st.session_state.protein_target, step=10)
+    
+    st.divider()
+    st.subheader("Dietary Aversions")
+    st.error("Active Filter: **NO TOMATOES**")
+    st.caption("The vision scanner is programmed to flag if tomatoes are detected in the frame.")
