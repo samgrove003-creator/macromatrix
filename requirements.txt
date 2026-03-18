@@ -3,3 +3,5 @@ pandas
 google-generativeai
 pillow
 requests
+st-gsheets-connection
+plotly
