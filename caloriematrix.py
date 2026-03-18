@@ -107,7 +107,7 @@ with tab_scan:
             with st.spinner("Analyzing telemetry..."):
                 try:
                     img = Image.open(food_image)
-                    model = genai.GenerativeModel('gemini-1.5-flash')
+                    model = genai.GenerativeModel('gemini-2.5-flash')
                     prompt = """
                     Look at this food. 
                     1. Tell me what it is in one short sentence.
