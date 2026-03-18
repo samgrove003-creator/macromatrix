@@ -25,7 +25,7 @@ if 'protein_target' not in st.session_state:
 # --- 2. Load and Display the Cover Photo ---
 try:
     # Looks for the file named cover.jpg in your repo
-    cover_image = Image.open('cover.jpg')
+    cover_image = Image.open('cover.png')
     st.image(cover_image, use_container_width=True)
 except FileNotFoundError:
     st.warning("Missing cover.jpg. Please upload the sketch to your GitHub repo.")
